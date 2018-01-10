@@ -114,6 +114,23 @@ produces:
   - application/json
 
 responses:
+  204:
+      description: No Content Exist
+      schema:
+        type: array
+        properties:
+          code:
+            type: integer
+            example:
+              422
+          message:
+            type: object
+            properties:
+              errors:
+                type: object
+                properties:
+                  fields:
+                    type: array
   401:
     description: Unauthorized
   403:
@@ -122,23 +139,6 @@ responses:
     description: Not Acceptable
   415:
     description: Unsupported Media Type
-  204:
-    description: No Content Exist
-    schema:
-      type: array
-      properties:
-        code:
-          type: integer
-          example:
-            422
-        message:
-          type: object
-          properties:
-            errors:
-              type: object
-              properties:
-                fields:
-                  type: array
   422:
     description: Content body error
     schema:
@@ -1292,33 +1292,33 @@ paths:
             type: object
             items:
               $ref: '#/definitions/NotFoundResponse'
-    patch:
-      tags:
-        - products
-      description: update a single product based on the ID supplied
-      operationId: updateProductById
-      parameters:
-        - name: id
-          in: path
-          description: ID of product to update
-          required: true
-          type: integer
-          format: int64
-        - name: tax
-          in: body
-          description: Product to add to the store
-          required: true
-          schema:
-            $ref: '#/definitions/Product'
-      responses:
-        200:
-          description: Product has been updated
-        404:
-          description: Resource not found
-          schema:
-            type: object
-            items:
-              $ref: '#/definitions/NotFoundResponse'
+#    patch:
+#      tags:
+#        - products
+#      description: update a single product based on the ID supplied
+#      operationId: updateProductById
+#      parameters:
+#        - name: id
+#          in: path
+#          description: ID of product to update
+#          required: true
+#          type: integer
+#          format: int64
+#        - name: tax
+#          in: body
+#          description: Product to add to the store
+#          required: true
+#          schema:
+#            $ref: '#/definitions/Product'
+#      responses:
+#        200:
+#          description: Product has been updated
+#        404:
+#          description: Resource not found
+#          schema:
+#            type: object
+#            items:
+#              $ref: '#/definitions/NotFoundResponse'
   /products/{id}/uploads/:
       post:
         tags:
